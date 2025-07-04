@@ -26,8 +26,14 @@ class MsgHDWebSocketClient extends Utils.EventEmitter {
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
             const host = window.location.host;
             
-            // Если открыто как файл, используем localhost:3000
-            const wsUrl = host ? `${protocol}//${host}` : 'ws://localhost:3000';
+            let wsUrl;
+            if (host) {
+                // Если приложение открыто через веб-сервер
+                wsUrl = `${protocol}//${host}`;
+            } else {
+                // Если открыто как файл, пробуем localhost
+                wsUrl = 'ws://localhost:3000';
+            }
             
             console.log('Подключение к WebSocket:', wsUrl);
             this.ws = new WebSocket(wsUrl);

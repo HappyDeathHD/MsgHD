@@ -211,8 +211,17 @@ setInterval(() => {
 }, 30000);
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`🚀 MsgHD сервер запущен на порту ${PORT}`);
-    console.log(`📱 Откройте http://localhost:${PORT} в браузере`);
-    console.log(`🌐 Для доступа из сети используйте ваш IP: http://[YOUR_IP]:${PORT}`);
+const HOST = process.env.HOST || '0.0.0.0';
+
+server.listen(PORT, HOST, () => {
+    console.log(`🚀 MsgHD сервер запущен на ${HOST}:${PORT}`);
+    console.log(`📱 Локально: http://localhost:${PORT}`);
+    
+    if (process.env.RAILWAY_PUBLIC_DOMAIN) {
+        console.log(`🌐 Публично: https://${process.env.RAILWAY_PUBLIC_DOMAIN}`);
+    } else if (process.env.NODE_ENV === 'production') {
+        console.log(`🌐 Продакшен режим`);
+    } else {
+        console.log(`🌐 Для сети: http://[YOUR_IP]:${PORT}`);
+    }
 });
