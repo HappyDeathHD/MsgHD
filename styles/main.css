@@ -777,6 +777,13 @@ body {
     background: var(--info-color);
 }
 
+/* Mobile Back Button */
+.mobile-back-btn {
+    margin-right: 12px;
+    background: transparent;
+    font-size: 1.2rem;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .login-container {
@@ -785,24 +792,35 @@ body {
     }
     
     .messenger-container {
-        flex-direction: column;
+        flex-direction: row; /* Остается row для slide анимации */
         height: 100vh;
+        overflow: hidden;
+        position: relative;
     }
     
+    /* Sidebar - занимает всю ширину, слайдится влево */
     .sidebar {
         width: 100%;
-        height: 45vh;
-        max-height: 45vh;
+        height: 100vh;
+        max-height: 100vh;
         border-right: none;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: none;
         overflow-y: auto;
-        position: static;
-        transform: none;
-        z-index: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+        background: var(--sidebar-bg);
+    }
+    
+    .sidebar.slide-left {
+        transform: translateX(-100%);
     }
     
     .sidebar-header {
-        padding: 0.75rem;
+        padding: 1rem;
     }
     
     .user-name {
@@ -814,26 +832,55 @@ body {
     }
     
     .search-section {
-        padding: 0.75rem;
+        padding: 1rem;
     }
     
-    .chats-section, .online-users {
-        padding: 0.5rem 0.75rem;
+    .chats-section {
+        padding: 0.5rem 1rem;
+        flex: 1;
     }
     
-    .chats-section h3, .online-users h3 {
+    .chats-section h3 {
         font-size: 0.9rem;
         margin-bottom: 0.5rem;
     }
     
+    /* Chat area - занимает всю ширину */
     .chat-area {
         width: 100%;
-        height: 55vh;
-        flex: 1;
+        height: 100vh;
+        flex: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+    }
+    
+    .chat-placeholder {
+        display: none !important; /* Скрываем на мобильных */
+    }
+    
+    .chat-container {
+        height: 100vh !important;
+    }
+    
+    .chat-header {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .mobile-back-btn {
+        display: flex !important; /* Показываем на мобильных */
+    }
+    
+    #close-chat-btn {
+        display: none; /* Скрываем кнопку закрытия на мобильных */
     }
     
     .chat-messages {
         padding: 0.75rem;
+        height: calc(100vh - 140px); /* Высота с учетом header и input */
     }
     
     .message {
@@ -848,6 +895,11 @@ body {
     
     .chat-input-area {
         padding: 0.75rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--sidebar-bg);
     }
     
     .input-container input {

@@ -41,6 +41,7 @@ class MsgHDApp {
         const messageInput = document.getElementById('message-input');
         const sendBtn = document.getElementById('send-btn');
         const closeChatBtn = document.getElementById('close-chat-btn');
+        const mobileBackBtn = document.getElementById('mobile-back-btn');
         const themeToggle = document.getElementById('theme-toggle');
         const logoutBtn = document.getElementById('logout-btn');
 
@@ -49,6 +50,7 @@ class MsgHDApp {
         messageInput.addEventListener('keypress', this.handleMessageKeyPress.bind(this));
         sendBtn.addEventListener('click', this.handleSendMessage.bind(this));
         closeChatBtn.addEventListener('click', this.handleCloseChat.bind(this));
+        mobileBackBtn.addEventListener('click', this.handleMobileBack.bind(this));
         themeToggle.addEventListener('click', this.handleThemeToggle.bind(this));
         logoutBtn.addEventListener('click', this.handleLogout.bind(this));
 
@@ -336,6 +338,12 @@ class MsgHDApp {
         chatUserName.textContent = user.nickname;
         chatUserStatus.textContent = user.status || 'онлайн';
         
+        // На мобильных устройствах скрываем sidebar
+        if (Utils.isMobile()) {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.add('slide-left');
+        }
+        
         // Initialize chat if not exists
         if (!this.chats.has(user.userId)) {
             this.chats.set(user.userId, {
@@ -353,6 +361,16 @@ class MsgHDApp {
         const chat = this.chats.get(user.userId);
         chat.unreadCount = 0;
         this.updateChatItem(user.userId);
+    }
+
+    /**
+     * Handle mobile back button
+     */
+    handleMobileBack() {
+        if (Utils.isMobile()) {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.remove('slide-left');
+        }
     }
 
     /**
