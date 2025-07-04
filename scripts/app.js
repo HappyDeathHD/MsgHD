@@ -87,9 +87,7 @@ class MsgHDApp {
         
         joinBtn.disabled = !validation.valid;
         
-        if (nickname.length > 0 && !validation.valid) {
-            Utils.showNotification(validation.errors[0], 'error', 2000);
-        }
+        // Не показываем ошибку во время набора, только при попытке войти
     }
 
     /**

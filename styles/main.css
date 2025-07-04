@@ -779,24 +779,126 @@ body {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        position: absolute;
-        z-index: 10;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
+    .login-container {
+        padding: 1rem;
+        margin: 1rem;
     }
     
-    .sidebar.active {
-        transform: translateX(0);
+    .messenger-container {
+        flex-direction: column;
+        height: 100vh;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: 45vh;
+        max-height: 45vh;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        overflow-y: auto;
+        position: static;
+        transform: none;
+        z-index: auto;
+    }
+    
+    .sidebar-header {
+        padding: 0.75rem;
+    }
+    
+    .user-name {
+        font-size: 0.9rem;
+    }
+    
+    .user-id {
+        font-size: 0.75rem;
+    }
+    
+    .search-section {
+        padding: 0.75rem;
+    }
+    
+    .chats-section, .online-users {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .chats-section h3, .online-users h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
     }
     
     .chat-area {
         width: 100%;
+        height: 55vh;
+        flex: 1;
+    }
+    
+    .chat-messages {
+        padding: 0.75rem;
     }
     
     .message {
         max-width: 85%;
+        margin-bottom: 0.75rem;
+    }
+    
+    .message-text {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .chat-input-area {
+        padding: 0.75rem;
+    }
+    
+    .input-container input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .modal {
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        margin: 2rem auto;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 0.75rem;
+        margin: 0.5rem;
+    }
+    
+    .logo h1 {
+        font-size: 2rem;
+    }
+    
+    .logo p {
+        font-size: 0.9rem;
+    }
+    
+    .sidebar {
+        height: 40vh;
+    }
+    
+    .chat-area {
+        height: 60vh;
+    }
+    
+    .sidebar-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .user-info {
+        width: 100%;
+    }
+    
+    .sidebar-controls {
+        width: 100%;
+        justify-content: flex-end;
     }
 }
 
