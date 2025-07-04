@@ -60,6 +60,17 @@ MsgHD/
 
 ## 🔧 Installation and launch
 
+### GitHub Pages (Recommended)
+
+**Live Demo**: https://HappyDeathHD.github.io/MsgHD
+
+#### To enable GitHub Pages:
+1. Go to repository Settings → Pages
+2. Under "Source", select "Deploy from a branch"
+3. Choose "main" branch and "/ (root)" folder
+4. Click "Save"
+5. Wait 5-10 minutes for deployment
+
 ### Local development
 
 1. Clone the repository:
@@ -68,32 +79,20 @@ git clone https://github.com/HappyDeathHD/MsgHD.git
 cd MsgHD
 ```
 
-2. Start local server:
-```bash
-# Python 3
-python -m http.server 8000
+2. Since this is a pure HTML/CSS/JS project, you can:
+   - **Open directly**: Double-click `index.html` to open in browser
+   - **Use local server** (optional, for development):
+     - **Live Server** (VS Code extension): Right-click `index.html` → "Open with Live Server"
+     - **Python**: `python -m http.server 8000` then visit http://localhost:8000
+     - **Node.js**: `npx serve .` then visit http://localhost:3000
+     - **Any local server** of your choice
 
-# Python 2
-python -m SimpleHTTPServer 8000
-
-# Node.js
-npx serve .
-
-# Live Server (VS Code)
-# Install Live Server extension and click "Go Live"
-```
-
-3. Open http://localhost:8000 in your browser
-
-### Deploy to GitHub Pages
+### For contributors
 
 1. Fork the repository
-2. Go to Settings → Pages
-3. Select Source: Deploy from a branch
-4. Select main branch and / (root) folder
-5. Save settings
-
-Your messenger will be available at: `https://HappyDeathHD.github.io/MsgHD`
+2. Make your changes
+3. Test locally by opening `index.html`
+4. Submit a pull request
 
 ## 🎨 Themes
 
