@@ -111,22 +111,37 @@ cd MsgHD
 
 **Note**: GitHub Pages version works in client-only mode (same browser tabs)
 
-### Network Setup
+### Cloud Deployment (Recommended)
 
-**To allow external connections:**
+**For internet access from anywhere:**
 
-1. **Find your IP address**:
-   - Windows: `ipconfig`
-   - Linux/Mac: `ifconfig` or `ip addr`
+#### Railway (Free & Easy):
+1. Go to https://railway.app
+2. Login with GitHub
+3. Click "New Project" → "Deploy from GitHub repo"
+4. Select your fork of MsgHD
+5. Click "Deploy Now"
+6. Get your public URL: `https://msghd-production.up.railway.app`
 
+#### Render (Alternative):
+1. Go to https://render.com
+2. "New" → "Web Service" → Connect GitHub
+3. Build Command: `npm install`
+4. Start Command: `npm start`
+
+#### Docker (Any platform):
+```bash
+docker build -t msghd .
+docker run -p 3000:3000 msghd
+```
+
+### Local Network Setup
+
+**For local network access:**
+
+1. **Find your IP**: `ipconfig` (Windows) or `ifconfig` (Linux/Mac)
 2. **Open firewall port 3000** (if needed)
-
-3. **Share the URL**: `http://[YOUR_IP]:3000`
-
-4. **For internet access**, consider:
-   - Port forwarding on router
-   - Cloud hosting (Heroku, Railway, etc.)
-   - VPS deployment
+3. **Share URL**: `http://[YOUR_IP]:3000`
 
 ## 🎨 Themes
 
