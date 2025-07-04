@@ -60,7 +60,45 @@ MsgHD/
 
 ## 🔧 Installation and launch
 
-### GitHub Pages (Recommended)
+### Server Mode (Real-time messaging across networks)
+
+**For real messaging between different users and networks:**
+
+1. **Install Node.js** (v14 or higher)
+2. **Clone and setup**:
+```bash
+git clone https://github.com/HappyDeathHD/MsgHD.git
+cd MsgHD
+npm install
+```
+
+3. **Start the server**:
+```bash
+npm start
+```
+
+4. **Access the application**:
+   - Local: http://localhost:3000
+   - Network: http://[YOUR_IP]:3000 (share with others)
+
+### Client-only Mode (Local browser tabs)
+
+**For testing or local use (works only between tabs in same browser):**
+
+1. Clone the repository:
+```bash
+git clone https://github.com/HappyDeathHD/MsgHD.git
+cd MsgHD
+```
+
+2. Open `index.html` directly in browser
+   - **Double-click** `index.html`, or
+   - **Use local server**:
+     - **Live Server** (VS Code): Right-click `index.html` → "Open with Live Server"
+     - **Python**: `python -m http.server 8000`
+     - **Node.js**: `npx serve .`
+
+### GitHub Pages (Static hosting)
 
 **Live Demo**: https://HappyDeathHD.github.io/MsgHD
 
@@ -71,28 +109,24 @@ MsgHD/
 4. Click "Save"
 5. Wait 5-10 minutes for deployment
 
-### Local development
+**Note**: GitHub Pages version works in client-only mode (same browser tabs)
 
-1. Clone the repository:
-```bash
-git clone https://github.com/HappyDeathHD/MsgHD.git
-cd MsgHD
-```
+### Network Setup
 
-2. Since this is a pure HTML/CSS/JS project, you can:
-   - **Open directly**: Double-click `index.html` to open in browser
-   - **Use local server** (optional, for development):
-     - **Live Server** (VS Code extension): Right-click `index.html` → "Open with Live Server"
-     - **Python**: `python -m http.server 8000` then visit http://localhost:8000
-     - **Node.js**: `npx serve .` then visit http://localhost:3000
-     - **Any local server** of your choice
+**To allow external connections:**
 
-### For contributors
+1. **Find your IP address**:
+   - Windows: `ipconfig`
+   - Linux/Mac: `ifconfig` or `ip addr`
 
-1. Fork the repository
-2. Make your changes
-3. Test locally by opening `index.html`
-4. Submit a pull request
+2. **Open firewall port 3000** (if needed)
+
+3. **Share the URL**: `http://[YOUR_IP]:3000`
+
+4. **For internet access**, consider:
+   - Port forwarding on router
+   - Cloud hosting (Heroku, Railway, etc.)
+   - VPS deployment
 
 ## 🎨 Themes
 
