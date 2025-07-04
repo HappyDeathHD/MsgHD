@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MsgHD - Временный мессенджер</title>
+    <meta name="description" content="Современный минималистичный мессенджер, вдохновленный Telegram. Без регистрации, с временными данными.">
+    <meta name="keywords" content="мессенджер, чат, telegram, временный, без регистрации">
+    <meta name="author" content="MsgHD">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="MsgHD - Временный веб-мессенджер">
+    <meta property="og:description" content="Современный минималистичный мессенджер без базы данных">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/0088cc/ffffff?text=MsgHD">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0088cc">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/themes.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Экран входа -->
+        <div id="login-screen" class="screen active">
+            <div class="login-container">
+                <div class="logo">
+                    <h1>MsgHD</h1>
+                    <p>Временный мессенджер</p>
+                </div>
+                <div class="login-form">
+                    <input type="text" id="nickname-input" placeholder="Введите ваш никнейм" maxlength="20" autocomplete="off">
+                    <button id="join-btn" disabled>Войти</button>
+                    <p class="login-info">Данные сохраняются только во время сессии</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Основной экран мессенджера -->
+        <div id="messenger-screen" class="screen">
+            <div class="messenger-container">
+                <!-- Боковая панель -->
+                <div class="sidebar">
+                    <div class="sidebar-header">
+                        <div class="user-info">
+                            <div class="user-avatar" id="user-avatar"></div>
+                            <div class="user-details">
+                                <div class="user-name" id="user-name"></div>
+                                <div class="user-id" id="user-id"></div>
+                            </div>
+                        </div>
+                        <div class="sidebar-controls">
+                            <button class="btn-icon" id="theme-toggle" title="Переключить тему">🌙</button>
+                            <button class="btn-icon" id="logout-btn" title="Выйти">🚪</button>
+                        </div>
+                    </div>
+                    
+                    <div class="search-section">
+                        <input type="text" id="search-input" placeholder="Поиск пользователей..." autocomplete="off">
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+                    
+                    <div class="chats-section">
+                        <h3>Активные чаты</h3>
+                        <div id="chats-list" class="chats-list">
+                            <div class="no-chats">Нет активных чатов</div>
+                        </div>
+                    </div>
+                    
+                    <div class="online-users">
+                        <h3>Онлайн пользователи</h3>
+                        <div id="online-users-list" class="online-list"></div>
+                    </div>
+                </div>
+
+                <!-- Область чата -->
+                <div class="chat-area">
+                    <div class="chat-placeholder" id="chat-placeholder">
+                        <div class="placeholder-content">
+                            <h2>Добро пожаловать в MsgHD!</h2>
+                            <p>Найдите пользователя и начните общение</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-container" id="chat-container" style="display: none;">
+                        <div class="chat-header">
+                            <div class="chat-user-info">
+                                <div class="chat-user-avatar" id="chat-user-avatar"></div>
+                                <div class="chat-user-details">
+                                    <div class="chat-user-name" id="chat-user-name"></div>
+                                    <div class="chat-user-status" id="chat-user-status">онлайн</div>
+                                </div>
+                            </div>
+                            <button class="btn-icon" id="close-chat-btn">✕</button>
+                        </div>
+                        
+                        <div class="chat-messages" id="chat-messages"></div>
+                        
+                        <div class="chat-input-area">
+                            <div class="input-container">
+                                <input type="text" id="message-input" placeholder="Введите сообщение..." autocomplete="off">
+                                <button id="send-btn" disabled>📤</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно информации о пользователе -->
+        <div id="user-info-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Информация о пользователе</h3>
+                    <button class="btn-close" id="close-modal-btn">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-user-info">
+                        <div class="modal-user-avatar" id="modal-user-avatar"></div>
+                        <div class="modal-user-details">
+                            <div class="modal-user-name" id="modal-user-name"></div>
+                            <div class="modal-user-id" id="modal-user-id"></div>
+                            <div class="modal-user-status" id="modal-user-status"></div>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn-primary" id="start-chat-btn">Начать чат</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div id="notifications" class="notifications"></div>
+
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/websocket.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
